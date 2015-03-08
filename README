@@ -1,3 +1,13 @@
 Pure java implementation of NFSv3, v4 and V4.1 protocols.
 
 Please report and discuss here: dev@dcache.org before you open a ticket.
+
+
+To launch the basic-server
+
+java -jar nfs4j-basic-server.jar oncrpcsvc.xml 
+
+
+To enable IO mode in Chimera Filesystem pass
+
+-Dchimera.inodeIoMode=true
