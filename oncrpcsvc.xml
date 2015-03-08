@@ -63,9 +63,13 @@
         <constructor-arg value="${chimera.db.dialect}" />
     </bean>
 
+<!--
     <bean id="vfs-intern" class="org.dcache.nfs.vfs.ChimeraVfs">
         <description>Chimera Filesystem</description>
         <constructor-arg ref="fileSystem"/>
+    </bean>
+-->
+    <bean id="vfs-intern" class="org.dcache.nfs.vfs.ReadOnlyDirectoryFileSystem">
         <constructor-arg ref="idmapd"/>
     </bean>
 
@@ -131,33 +135,33 @@
     <bean id="idmapd" class="org.dcache.nfs.v4.SimpleIdMap" />
 
     <!--
-       NFSv4.1 MDS
+       NFSv4.1 MDS LMM vfs to vfs-intern
     -->
     <bean id="mds" class="org.dcache.nfs.v4.NFSServerV41" depends-on="export-init">
         <description>NFSv4.1 MDS server</description>
         <constructor-arg ref="mds-factory"/>
         <constructor-arg ref="device-manager" />
-        <constructor-arg ref="vfs" />
+        <constructor-arg ref="vfs-intern" />
         <constructor-arg ref="export" />
     </bean>
 
     <!--
-       NFSv4.1 DS
+       NFSv4.1 DS LMM vfs to vfs-intern
     -->
     <bean id="ds" class="org.dcache.nfs.v4.NFSServerV41">
         <description>NFSv4.1 DS server</description>
         <constructor-arg ref="ds-factory"/>
         <constructor-arg ref="device-manager" />
-        <constructor-arg ref="vfs" />
+        <constructor-arg ref="vfs-intern" />
         <constructor-arg ref="export" />
     </bean>
     <!--
-        MOUNTD server
+        MOUNTD server vfs to vfs-intern
     -->
     <bean id="mountd" class="org.dcache.nfs.v3.MountServer">
         <description>Mountd seriver</description>
         <constructor-arg ref="export" />
-        <constructor-arg ref="vfs" />
+        <constructor-arg ref="vfs-intern" />
     </bean>
 
     <!--
@@ -189,11 +193,11 @@
     </bean>
 
     <!--
-       NFSv3
+       NFSv3 vfs to vfs-intern
     -->
     <bean id="nfs3" class="org.dcache.nfs.v3.NfsServerV3">
         <description>NFSv3 server</description>
-        <constructor-arg ref="vfs" />
+        <constructor-arg ref="vfs-intern" />
         <constructor-arg ref="export" />
     </bean>
 
