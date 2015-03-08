@@ -52,7 +52,8 @@ public class FsExport {
         SYS,
         KRB5,
         KRB5I,
-        KRB5P
+        KRB5P,
+        ALL
     }
 
     private final String _path;

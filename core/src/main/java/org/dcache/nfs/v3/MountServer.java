@@ -280,8 +280,11 @@ public class MountServer extends mount_protServerStub {
             case SYS:
                 supportedFlavors = new int[]{RPC_AUTH_GSS_KRB5, RPC_AUTH_GSS_KRB5I, RPC_AUTH_GSS_KRB5P, RpcAuthType.UNIX};
                 break;
-            case NONE:
+            case ALL:
                 supportedFlavors = new int[]{RPC_AUTH_GSS_KRB5, RPC_AUTH_GSS_KRB5I, RPC_AUTH_GSS_KRB5P, RpcAuthType.UNIX, RpcAuthType.NONE};
+                break;
+            case NONE:
+                supportedFlavors = new int[]{RpcAuthType.UNIX, RpcAuthType.NONE};
                 break;
             default:
                 // shuold never happen
